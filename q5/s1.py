@@ -7,14 +7,14 @@ class Solution(object):
         centers = {}
         tmps = {}
         maxEl = {'start': 0, 'end' : 0, 'count': 1, 'isOK': True}
+        def isOK(new_index, old_index, count):
+            distance = new_index - old_index
+            return count == (distance/2 + 1)
 
         for i, c in enumerate(s):
             i = i*2
             centers[i] = {'start': i, 'end' : i, 'count': 1, 'isOK': True}
 
-            def isOK(new_index, old_index, count):
-                distance = new_index - old_index
-                return count == (distance/2 + 1)
 
             if c in tmps:
                 for k, v in enumerate(tmps[c]):
