@@ -1,4 +1,3 @@
-import collections
 class Solution(object):
     def convert(self, s, numRows):
         """
@@ -9,7 +8,7 @@ class Solution(object):
         if numRows == 1:
             return s
         l = len(s)
-        class Ob(object):
+        class Node(object):
             def __init__(self, current):
                 self.current = current
                 self.next = None
@@ -18,25 +17,24 @@ class Solution(object):
             def next(self):
                 return self.next
 
-        head = Ob(0)
-        tmp1 = head
-        last = Ob(numRows -1)
-        tmp2 = last
-        result = ['']
+        head1 = Node(0)
+        tmp1 = head1
+        head2 = Node(numRows -1)
+        tmp2 = head2
+        result = ['','']
 
         for i in range(1, numRows -1):
-            tmp1.next = Ob(i)
+            tmp1.next = Node(i)
             tmp1 = tmp1.next
-            tmp2.next = Ob(numRows - i - 1)
+            tmp2.next = Node(numRows - i - 1)
             tmp2 = tmp2.next
 
             result.append('')
 
-        result.append('')
+        tmp1.next = head2
+        tmp2.next = head1
 
-        tmp1.next = last
-        tmp2.next = head
-        tmp = head
+        tmp = head1
 
         for j in range(0, l):
             result[tmp.getCurrent()] += s[j]

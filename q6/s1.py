@@ -9,7 +9,7 @@ class Solution(object):
         if numRows == 1:
             return s
         l = len(s)
-        class Ob(object):
+        class Node(object):
             def __init__(self, m):
                 self.current = 0
                 self.increatement = 1
@@ -23,7 +23,7 @@ class Solution(object):
                     self.increatement = -self.increatement
                 return self.tmp
 
-        a = Ob(numRows -1)
+        a = Node(numRows -1)
 
         result = []
 
