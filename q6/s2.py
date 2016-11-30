@@ -12,18 +12,7 @@ class Node(object):
     def eat(self, c):
         global_list[self._current].append(c)
 
-class Solution(object):
-    def convert(self, s, numRows):
-        """
-        :type s: str
-        :type numRows: int
-        :rtype: str
-        """
-        if numRows == 1:
-            return s
-
-        l = len(s)
-
+def createCycleLinkedList(numRows):
         head = Node(0)
         tmp = head
         recusive_head = Node(numRows - 1)
@@ -38,11 +27,25 @@ class Solution(object):
         tmp.next = recusive_head
         rtmp.next = head
 
-        tmp = head
+        return head
+
+
+class Solution(object):
+    def convert(self, s, numRows):
+        """
+        :type s: str
+        :type numRows: int
+        :rtype: str
+        """
+        if numRows == 1:
+            return s
+
+        l = len(s)
+        cycleList = createCycleLinkedList(numRows)
 
         for j in range(0, l):
-            tmp.eat(s[j])
-            tmp = tmp.next
+            cycleList.eat(s[j])
+            cycleList = cycleList.next
 
         return ''.join((''.join(x) for x in global_list))
 
