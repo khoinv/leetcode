@@ -23,31 +23,16 @@ class Solution(object):
                     self.increatement = -self.increatement
                 return self.tmp
 
-        # TODO: create new cycle list
-        # class Node(object):
-        #     def __init__(sefl, m):
-        #         self.current = m
-        #         self.next = None
-
-        #     @property
-        #     def next(self):
-        #         return self.next
-
-        #     @next.setter
-        #     def next(self, node):
-        #         self.next = node
-
         a = Ob(numRows -1)
 
-
-        dic = collections.defaultdict(list)
-        j = 0
-        for j in range(0, l):
-            dic[a.next()].append(s[j])
-
         result = []
+
         for i in range(0, numRows):
-            result.append(''.join(dic[i]))
+            result.append('')
+
+        for j in range(0, l):
+            result[a.next()] += s[j]
+
         return ''.join(result)
 
 
