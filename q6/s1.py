@@ -9,7 +9,7 @@ class Solution(object):
         if numRows == 1:
             return s
         l = len(s)
-        class Node(object):
+        class CycleNote(object):
             def __init__(self, m):
                 self.current = 0
                 self.increatement = 1
@@ -23,17 +23,17 @@ class Solution(object):
                     self.increatement = -self.increatement
                 return self.tmp
 
-        a = Node(numRows -1)
+        cycleNote = CycleNote(numRows -1)
 
-        result = []
+        lists = []
 
         for i in range(0, numRows):
-            result.append('')
+            lists.append([])
 
         for j in range(0, l):
-            result[a.next()] += s[j]
+            lists[cycleNote.next()].append(s[j])
 
-        return ''.join(result)
+        return ''.join((''.join(x) for x in lists))
 
 
 def main():
