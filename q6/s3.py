@@ -9,22 +9,19 @@ class Solution(object):
         if numRows == 1:
             return s
 
-        l = len(s)
-        tmps = []
-        lists = []
-        for i in range(0,numRows):
-            lists.append([])
-            tmps.append(i)
+        lists = [[] for _ in range(0, numRows)]
+        cycleList = [i for i in range(0, numRows)]
 
         for i in range(1,numRows -1):
-            tmps.append(numRows - i -1)
+            cycleList.append(numRows - i -1)
 
         for j in s:
-            lists[tmps[0]].append(j)
-            tmps = np.roll(tmps,-1)
+            lists[cycleList[0]].append(j)
+            cycleList = np.roll(cycleList, -1)
 
-        return ''.join((''.join(x) for x in lists))
-
+        rs = []
+        map(rs.extend,lists)
+        return ''.join(rs)
 
 def main():
     s = 'PAYPALISHIRING'

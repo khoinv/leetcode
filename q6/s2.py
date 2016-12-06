@@ -1,16 +1,10 @@
-global global_list
-global_list = []
 class Node(object):
     def __init__(self, current):
-        self._current = current
+        self.current = current
         self.next = None
-        global_list.append([])
 
     def next(self):
         return self.next
-
-    def eat(self, c):
-        global_list[self._current].append(c)
 
 def createCycleLinkedList(numRows):
         head = Node(0)
@@ -39,15 +33,19 @@ class Solution(object):
         """
         if numRows == 1:
             return s
+        if len(s) <= numRows:
+            return s
 
-        l = len(s)
         cycleList = createCycleLinkedList(numRows)
+        lists = [[] for _ in range(0, numRows)]
 
-        for j in range(0, l):
-            cycleList.eat(s[j])
+        for j in s:
+            lists[cycleList.current].append(j)
             cycleList = cycleList.next
 
-        return ''.join((''.join(x) for x in global_list))
+        rs = []
+        map(rs.extend,lists)
+        return ''.join(rs)
 
 def main():
     s = 'PAYPALISHIRING'
